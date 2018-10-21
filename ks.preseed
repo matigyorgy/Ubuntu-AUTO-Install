@@ -4,4 +4,6 @@ d-i partman/confirm boolean true
 d-i partman-partitioning/confirm_write_new_label boolean true
 d-i partman/choose_partition select finish
 d-i partman/confirm_nooverwrite boolean true
+d-i preseed/late_command string \
+in-target sed -i 's/PermitRootLogin.*/PermitRootLogin Yes/' /etc/ssh/sshd_config
 d-i pkgsel/include string openssh-server screen mc nano vnstat open-vm-tools
