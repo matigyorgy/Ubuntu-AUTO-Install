@@ -9,9 +9,10 @@ mkdir -p $ISO_FILES
 
 ##### [Copy ISO file default directory ] #####
 cp -r ./$ISO_FILES/*.iso .
-for file in ./$ISO_FILES/*.iso
+
+ISO_COUNT=$( find -name '*.iso' | grep -v AUTO | wc -l )
+for (( i=1 ; ((i-$ISO_COUNT)) ; i=(($i+1)) ))
 do
-	echo "$file";
 	#####[ Building name of new iso ]#####
 	ISO_SRC=$( find -name '*.iso' | grep -v AUTO | head -n 1 )
 	ISO_PREFIX=$( echo "$ISO_SRC" | sed 's/.iso//' )
