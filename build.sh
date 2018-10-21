@@ -1,5 +1,4 @@
 #!/bin/bash
-
 WORKDIR=temp
 rm -rf $WORKDIR
 mkdir $WORKDIR
