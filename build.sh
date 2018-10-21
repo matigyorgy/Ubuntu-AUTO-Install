@@ -14,9 +14,10 @@ ISO_COUNT=$( find -name '*.iso' | grep -v AUTO | wc -l )
 for (( i=1 ; ((i-$ISO_COUNT)) ; i=(($i+1)) ))
 do
 	#####[ Building name of new iso ]#####
-	ISO_SRC=$( find -name '*.iso' | grep -v AUTO | head -n 1 )
+	ISO_SRC=$( find . -name '*.iso' | grep -v AUTO | grep -v $ISO_FILES | head -n 1 )
 	ISO_PREFIX=$( echo "$ISO_SRC" | sed 's/.iso//' )
 	ISO_TARGET=$( echo "$ISO_PREFIX-AUTO.iso" )
+	echo $ISO_SRC
 	#####[ Extracting files from iso ]#####
 	xorriso -osirrox on -dev $ISO_SRC \
 		-extract "/isolinux/isolinux.cfg" $WORKDIR/isolinux.cfg \
